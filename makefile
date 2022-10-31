@@ -24,9 +24,13 @@ test:
 # locked). After this target is complete, NixOS will be installed but user
 # will not be setup, need to reboot first.
 bootstrap:
-	if [ -d /nix ]; then echo "Don't bootstrap on a running Nix system!"; exit 1; fi
+	@if [ -d /nix ]; then echo "Don't bootstrap on a running Nix system!"; exit 1; fi
 	NIXUSER=root ${MAKE} bootstrap/copy-config
-	NIXUSER=root ${MAKE} bootstrap/install || echo "Now run 'make finish' after the VM finishes rebooting."
+	NIXUSER=root ${MAKE} bootstrap/install
+	@echo "Now run 'make finish' after the VM finishes rebooting."
+	ssh ${SSH_OPTS} ${NIXUSER}@${NIXADDR} " \
+		sudo reboot; \
+	"
 
 finish:
 	# Need to copy config again after a reboot, since it will not have it.
