@@ -29,6 +29,7 @@ let sources = import ../../nix/sources.nix; in {
   };
 
   home.file.".inputrc".source = ./config/inputrc;
+  home.file.".git-credentials".source = ../../private/git-credentials;
 
   xdg.configFile."i3/config".text = builtins.readFile ./config/i3;
   xdg.configFile."rofi/config.rasi".text = builtins.readFile ./config/rofi;
