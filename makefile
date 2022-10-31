@@ -26,10 +26,13 @@ test:
 bootstrap:
 	if [ -d /nix ]; then echo "Don't bootstrap on a running Nix system!"; exit 1; fi
 	NIXUSER=root ${MAKE} bootstrap/copy-config
-	NIXUSER=root ${MAKE} bootstrap/install
-	NIXUSER=root ${MAKE} bootstrap/switch || echo "Now run 'make finish' after the VM finishes rebooting." 
+	NIXUSER=root ${MAKE} bootstrap/install || echo "Now run 'make finish' after the VM finishes rebooting."
 
 finish:
+	# Need to copy config again after a reboot, since it will not have it.
+	NIXUSER=root ${MAKE} bootstrap/copy-config
+	# Do a switch to ensure SSHD is set up amongst other things
+	NIXUSER=root ${MAKE} bootstrap/switch
 	${MAKE} bootstrap/copy-secrets
 	ssh ${SSH_OPTS} ${NIXUSER}@${NIXADDR} " \
 		echo \"Rebooting one final time.\";
