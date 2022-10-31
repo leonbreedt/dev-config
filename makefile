@@ -21,13 +21,18 @@ test:
 
 # Bootstrap a new VM. The VM should have NixOS ISO attached as the CD drive,
 # with a root password of "root" (after successful installation, root will be 
-# locked). After this target is complete, NixOS will be installed and configured.
+# locked). After this target is complete, NixOS will be installed but user
+# will not be setup, need to reboot first.
 bootstrap:
 	if [ -d /nix ]; then echo "Don't bootstrap on a running Nix system!"; exit 1; fi
 	NIXUSER=root ${MAKE} bootstrap/copy-config
-	NIXUSER=root ${MAKE} bootstrap/install
+	NIXUSER=root ${MAKE} bootstrap/install || echo "Now run 'make finish' after the VM finishes rebooting."
+
+finish:
+	NIXUSER=root ${MAKE} bootstrap/switch
 	${MAKE} bootstrap/copy-secrets
 	ssh ${SSH_OPTS} ${NIXUSER}@${NIXADDR} " \
+		echo \"Rebooting one final time.\";
 		sudo reboot; \
 	"
 
@@ -60,3 +65,9 @@ bootstrap/copy-secrets:
 	rsync -av -e 'ssh $(SSH_OPTIONS)' \
 		--exclude='environment' \
 		${HOME}/.ssh/ ${NIXUSER}@${NIXADDR}:~/.ssh
+
+# Run switch on newly booted system
+bootstrap/switch:
+	ssh ${SSH_OPTS} ${NIXUSER}@${NIXADDR} " \
+  sudo NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-rebuild switch --flake \"/nix-config#${NIXNAME}\" \
+	"
