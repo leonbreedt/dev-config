@@ -28,7 +28,7 @@ bootstrap:
 	NIXUSER=root ${MAKE} bootstrap/copy-config
 	NIXUSER=root ${MAKE} bootstrap/install
 	@echo "Now run 'make finish' after the VM finishes rebooting."
-	ssh ${SSH_OPTS} ${NIXUSER}@${NIXADDR} " \
+	ssh ${SSH_OPTS} root@${NIXADDR} " \
 		sudo reboot; \
 	"
 
