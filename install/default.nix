@@ -22,6 +22,7 @@ pkgs.mkShell {
     mkfs.ext4 -L nixos /dev/${blockDevice}p1
     mkswap -L swap /dev/${blockDevice}p2
     mkfs.fat -F 32 -n boot /dev/${blockDevice}p3
+    sleep 1
     mount /dev/disk/by-label/nixos /mnt
     mkdir -p /mnt/boot
     mount /dev/disk/by-label/boot /mnt/boot
