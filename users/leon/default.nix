@@ -15,7 +15,7 @@
     ];
   };
 
-  nixpkgs.overlays = import ../../lib/overlays.nix ++ [
+  nixpkgs.overlays = [
     (import ./vim.nix)
   ];
 }
