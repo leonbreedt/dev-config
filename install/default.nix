@@ -27,13 +27,15 @@ pkgs.mkShell {
     mkdir -p /mnt/boot
     mount /dev/disk/by-label/boot /mnt/boot
     nixos-generate-config --root /mnt
-    sed --in-place '/system\.stateVersion = .*/a
-  nix.package = pkgs.nixUnstable;
-  nix.extraOptions = "experimental-features = nix-command flakes";
-  services.openssh.enable = true;
-  services.openssh.passwordAuthentication = true;
-  services.openssh.permitRootLogin = "yes";
-  users.users.root.initialPassword = "root";
+    sed --in-place '/system\.stateVersion = .*/a \
+\
+  # Added by dev-config\
+  nix.package = pkgs.nixUnstable;\
+  nix.extraOptions = "experimental-features = nix-command flakes";\
+  services.openssh.enable = true;\
+  services.openssh.passwordAuthentication = true;\
+  services.openssh.permitRootLogin = "yes";\
+  users.users.root.initialPassword = "root";\
 ' /mnt/etc/nixos/configuration.nix; 
     NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-install --flake "/nix-config#${systemName}" --no-root-passwd -v
     reboot
