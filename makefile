@@ -33,15 +33,8 @@ bootstrap:
 	"
 
 finish:
-	# Need to copy config again after a reboot, since it will not have it.
-	NIXUSER=root ${MAKE} bootstrap/copy-config
 	# Do a switch to ensure SSHD is set up amongst other things
-	NIXUSER=root ${MAKE} bootstrap/switch
 	${MAKE} bootstrap/copy-secrets
-	ssh ${SSH_OPTS} ${NIXUSER}@${NIXADDR} " \
-		echo \"Rebooting one final time.\";
-		sudo reboot; \
-	"
 
 # Copy the current directory and all the configuration files 
 # to the VM.
@@ -69,7 +62,7 @@ bootstrap/copy-secrets:
 		--exclude='*.conf' \
 		${HOME}/.gnupg/ ${NIXUSER}@${NIXADDR}:~/.gnupg
 	# SSH keys
-	rsync -av -e 'ssh $(SSH_OPTIONS)' \
+	rsync -av -e 'ssh ${SSH_OPTS}' \
 		--exclude='environment' \
 		${HOME}/.ssh/ ${NIXUSER}@${NIXADDR}:~/.ssh
 
