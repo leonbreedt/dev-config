@@ -9,9 +9,9 @@
     home = "/home/leon";
     extraGroups = [ "docker" "wheel" ];
     shell = pkgs.fish;
-    hashedPassword = builtins.readFile ../../private/password-hash;
+    hashedPassword = lib.removeSuffix "\n" (builtins.readFile ../../private/password-hash);
     openssh.authorizedKeys.keys = [
-      builtins.readFile ../../private/ssh-authorized-key
+      lib.removeSuffix "\n" (builtins.readFile ../../private/ssh-authorized-key)
     ];
   };
 
