@@ -1,0 +1,12 @@
+[buildPlans.iosevka-jb]
+family = "IosevkaJB"
+spacing = "term"
+serifs = "sans"
+no-cv-ss = true
+no-ligation = false
+
+[buildPlans.iosevka-jb.variants]
+inherits = "ss14"
+
+[buildPlans.iosevka-jb.variants.design]
+underscore = "low"
