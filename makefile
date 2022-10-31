@@ -26,10 +26,10 @@ test:
 bootstrap:
 	if [ -d /nix ]; then echo "Don't bootstrap on a running Nix system!"; exit 1; fi
 	NIXUSER=root ${MAKE} bootstrap/copy-config
-	NIXUSER=root ${MAKE} bootstrap/install || echo "Now run 'make finish' after the VM finishes rebooting."
+	NIXUSER=root ${MAKE} bootstrap/install
+	NIXUSER=root ${MAKE} bootstrap/switch || echo "Now run 'make finish' after the VM finishes rebooting." 
 
 finish:
-	NIXUSER=root ${MAKE} bootstrap/switch
 	${MAKE} bootstrap/copy-secrets
 	ssh ${SSH_OPTS} ${NIXUSER}@${NIXADDR} " \
 		echo \"Rebooting one final time.\";
@@ -69,5 +69,6 @@ bootstrap/copy-secrets:
 # Run switch on newly booted system
 bootstrap/switch:
 	ssh ${SSH_OPTS} ${NIXUSER}@${NIXADDR} " \
-  sudo NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-rebuild switch --flake \"/nix-config#${NIXNAME}\" \
+  sudo NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-rebuild switch --flake \"/nix-config#${NIXNAME}\"; \
+	sudo reboot; \
 	"

@@ -1,2 +1,3 @@
+- figure out why SSH is not started after a reboot
 - clean up VIM config in users/leon
 - clean up fish config in users/leon

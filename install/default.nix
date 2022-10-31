@@ -38,6 +38,5 @@ pkgs.mkShell {
   users.users.root.initialPassword = "root";\
 ' /mnt/etc/nixos/configuration.nix; 
     NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-install --flake "/nix-config#${systemName}" --no-root-passwd -v
-    reboot
   '';
 }
