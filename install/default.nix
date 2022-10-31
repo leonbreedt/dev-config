@@ -26,6 +26,15 @@ pkgs.mkShell {
     mount /dev/disk/by-label/nixos /mnt
     mkdir -p /mnt/boot
     mount /dev/disk/by-label/boot /mnt/boot
+    nixos-generate-config --root /mnt
+    sed --in-place '/system\.stateVersion = .*/a
+  nix.package = pkgs.nixUnstable;\n
+  nix.extraOptions = \"experimental-features = nix-command flakes\";\n
+  services.openssh.enable = true;\n
+  services.openssh.passwordAuthentication = true;\n
+  services.openssh.permitRootLogin = \"yes\";\n
+  users.users.root.initialPassword = \"root\";\n
+' /mnt/etc/nixos/configuration.nix; 
     NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-install --flake "/nix-config#${systemName}" --no-root-passwd -v
     reboot
   '';
