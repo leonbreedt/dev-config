@@ -1,3 +1,3 @@
 [submodule "dev-config-private"]
-	path = dev-config-private
+	path = private
 	url = https://github.com/leonbreedt/dev-config-private
