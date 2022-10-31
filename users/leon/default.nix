@@ -11,7 +11,7 @@
     shell = pkgs.fish;
     hashedPassword = builtins.readFile ../../private/password-hash;
     openssh.authorizedKeys.keys = [
-      builtins.readFile ../../private/ssh-authorized-key;
+      builtins.readFile ../../private/ssh-authorized-key
     ];
   };
 
