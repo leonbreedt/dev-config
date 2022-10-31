@@ -34,6 +34,12 @@ podcast episode.
   - *CD/DVD*
     - Latest **22.05** ISO image attached, later versions have 
       not been tested and may not work.
+- Boot up the VM, change the root password to `root`:
+  ```shell
+  sudo su
+  passwd
+  # change password to 'root'
+  ```
 
 ### Installation
 
