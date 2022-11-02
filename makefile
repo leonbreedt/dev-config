@@ -1,7 +1,7 @@
 # Overridable options
 
 NIXUSER ?= leon
-NIXADDR ?= 172.16.137.128
+NIXADDR ?= 192.168.36.128
 NIXNAME ?= system-aarch64
 
 # Static options
