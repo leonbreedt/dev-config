@@ -38,6 +38,8 @@ let sources = import ../../nix/sources.nix; in {
   xdg.configFile."bspwm/sxhkdrc".text = builtins.readFile ./config/sxhkdrc;
   xdg.configFile."bspwm/rules".text = builtins.readFile ./config/bspwm/rules;
 
+  xdg.configFile."picom/picom.conf".text = builtins.readFile ./config/picom;
+
   xdg.configFile."nvim/parser/proto.so".source = "${pkgs.tree-sitter-proto}/parser";
   xdg.configFile."nvim/queries/proto/folds.scm".source = "${sources.tree-sitter-proto}/queries/folds.scm";
   xdg.configFile."nvim/queries/proto/highlights.scm".source = "${sources.tree-sitter-proto}/queries/highlights.scm";
