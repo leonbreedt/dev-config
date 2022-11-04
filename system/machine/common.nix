@@ -66,14 +66,14 @@
         ${pkgs.xorg.xset}/bin/xset r rate 200 40
         ${pkgs.xorg.xrandr}/bin/xrandr --output Virtual-1 --auto
         ${pkgs.bspwm}/bin/bspc wm -r
-        source ${config.users.leon.home}/.config/bspwm/bspwmrc
+        source ${config.users.users.leon.home}/.config/bspwm/bspwmrc
       '';
     };
 
     windowManager = {
       bspwm.enable = true;
-      bspwm.configFile = "${config.users.leon.home}/.config/bspwm/bspwmrc";
-      bspwm.sxhkd.configFile = "${config.users.leon.home}/.config/bspwm/sxhkdrc";
+      bspwm.configFile = "${config.users.users.leon.home}/.config/bspwm/bspwmrc";
+      bspwm.sxhkd.configFile = "${config.users.users.leon.home}/.config/bspwm/sxhkdrc";
     };
   };
 
