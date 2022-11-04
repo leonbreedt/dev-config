@@ -17,6 +17,7 @@ let sources = import ../../nix/sources.nix; in {
     pkgs.tree
     pkgs.watch
     pkgs.ripgrep
+    pkgs.feh
   ];
 
   home.sessionVariables = {
