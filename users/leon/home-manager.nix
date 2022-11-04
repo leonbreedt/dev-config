@@ -34,6 +34,7 @@ let sources = import ../../nix/sources.nix; in {
   xdg.configFile."rofi/config.rasi".text = builtins.readFile ./config/rofi;
 
   xdg.configFile."bspwm/bspwmrc".text = builtins.readFile ./config/bspwmrc;
+  xdg.configFile."bspwm/bspwmrc".executable = true;
   xdg.configFile."bspwm/sxhkdrc".text = builtins.readFile ./config/sxhkdrc;
   xdg.configFile."bspwm/rules".text = builtins.readFile ./config/bspwm/rules;
 
