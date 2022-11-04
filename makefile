@@ -13,11 +13,11 @@ BLOCK_DEVICE=nvme0n1
 
 # Rebuild from configuration, and switch to it.
 switch:
-	sudo ${NIXOS_REBUILD_OPTS} nixos-rebuild switch --flake ".?submodules=1.#${NIXNAME}"
+	sudo ${NIXOS_REBUILD_OPTS} nixos-rebuild switch --flake ".?submodules=1#${NIXNAME}"
 
 # Test the configuration, but don't actually change anything.
 test:
-	sudo ${NIXOS_REBUILD_OPTS} nixos-rebuild test --flake ".?submodules=1.#${NIXNAME}"
+	sudo ${NIXOS_REBUILD_OPTS} nixos-rebuild test --flake ".?submodules=1#${NIXNAME}"
 
 # Bootstrap a new VM. The VM should have NixOS ISO attached as the CD drive,
 # with a root password of "root" (after successful installation, root will be 
