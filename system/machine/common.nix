@@ -57,7 +57,7 @@
     };
 
     displayManager = {
-      defaultSession = "none+i3";
+      defaultSession = "none+bspwm";
       lightdm.enable = true;
 
       # AARCH64: For now, on Apple Silicon, we must manually set the
