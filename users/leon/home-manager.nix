@@ -31,8 +31,11 @@ let sources = import ../../nix/sources.nix; in {
   home.file.".inputrc".source = ./config/inputrc;
   home.file.".git-credentials".source = ../../private/git-credentials;
 
-  xdg.configFile."i3/config".text = builtins.readFile ./config/i3;
   xdg.configFile."rofi/config.rasi".text = builtins.readFile ./config/rofi;
+
+  xdg.configFile."bswpm/bspwmrc".text = builtins.readFile ./config/bspwmrc;
+  xdg.configFile."bswpm/sxhkdrc".text = builtins.readFile ./config/sxhkdrc;
+  xdg.configFile."bswpm/rules".text = builtins.readFile ./config/bspwm/rules;
 
   xdg.configFile."nvim/parser/proto.so".source = "${pkgs.tree-sitter-proto}/parser";
   xdg.configFile."nvim/queries/proto/folds.scm".source = "${sources.tree-sitter-proto}/queries/folds.scm";

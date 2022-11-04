@@ -69,7 +69,9 @@
     };
 
     windowManager = {
-      i3.enable = true;
+      bspwm.enable = true;
+      bspwm.configFile = "/home/leon/.config/bspwm/bspwmrc";
+      bspwm.sxhkd.configFile = "/home/leon/.config/bspwm/sxhkdrc";
     };
   };
 
