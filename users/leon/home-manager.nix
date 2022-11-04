@@ -46,7 +46,7 @@ let sources = import ../../nix/sources.nix; in {
   xdg.configFile."nvim/queries/proto/highlights.scm".source = "${sources.tree-sitter-proto}/queries/highlights.scm";
   xdg.configFile."nvim/queries/proto/textobjects.scm".source = ./config/textobjects.scm;
 
-  services.picom.enable = true;
+  # services.picom.enable = true;
 
   programs.gpg.enable = true;
 
