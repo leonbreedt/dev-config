@@ -33,9 +33,9 @@ let sources = import ../../nix/sources.nix; in {
 
   xdg.configFile."rofi/config.rasi".text = builtins.readFile ./config/rofi;
 
-  xdg.configFile."bswpm/bspwmrc".text = builtins.readFile ./config/bspwmrc;
-  xdg.configFile."bswpm/sxhkdrc".text = builtins.readFile ./config/sxhkdrc;
-  xdg.configFile."bswpm/rules".text = builtins.readFile ./config/bspwm/rules;
+  xdg.configFile."bspwm/bspwmrc".text = builtins.readFile ./config/bspwmrc;
+  xdg.configFile."bspwm/sxhkdrc".text = builtins.readFile ./config/sxhkdrc;
+  xdg.configFile."bspwm/rules".text = builtins.readFile ./config/bspwm/rules;
 
   xdg.configFile."nvim/parser/proto.so".source = "${pkgs.tree-sitter-proto}/parser";
   xdg.configFile."nvim/queries/proto/folds.scm".source = "${sources.tree-sitter-proto}/queries/folds.scm";
