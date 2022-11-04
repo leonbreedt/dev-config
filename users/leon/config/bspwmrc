@@ -1,8 +1,6 @@
 #!/bin/sh
 
-sxhkd &
-
-bspc config border_width          4
+bspc config border_width          10
 bspc config border_radius         10
 bspc config focused_border_color  '#8fbcbb'
 bspc config active_border_color   '#2e3440'
@@ -16,5 +14,3 @@ bspc config split_ratio           0.52
 bspc config focus_follows_pointer true
 
 bspc config external_rules_command "/home/leon/.config/bspwm/rules"
-
-xsetroot -cursor_name left_ptr
