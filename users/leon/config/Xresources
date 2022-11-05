@@ -1,6 +1,5 @@
-! URXVT FONT SETTINGS
-!------------------------------------------------
-Xft.dpi: 180
+! font settings
+Xft.dpi: 192
 Xft.autohint: true
 Xft.antialias: true
 Xft.hinting: true
@@ -8,41 +7,43 @@ Xft.hintstyle: hintslight
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
-! TERMINAL COLORS
-!------------------------------------------------
-*background: #1D1F21
-*foreground: #C5C8C6
-*cursorColor: #C3FF00
+! terminal colors
+*foreground: #d8dee9
+*foreground-dim: #4c566a
+*background: #2e3440
+*highlight: #8fbcbb
+*alert: #bf616a
+*icon: #81a1c1
 
 ! black
-*color0: #282A2E
-*color8: #373B41
+*color0: #3b4252
+! bright black
+*color8: #4c566a
 ! red
-*color1: #A54242
-*color9: #CC6666
+*color1: #bf616a
+! bright red
+*color9: #bf616a
 ! green
-*color2: #8C9440
-*color10: #B5BD68
+*color2: #a3be8c
+! bright green
+*color10: #a3be8c
 ! yellow
-*color3: #DE935F
-*color11: #F0C674
+*color3: #ebcb8b
+! bright yellow
+*color11: #ebcb8b
 ! blue
-*color4: #5F819D
-*color12: #81A2BE
+*color4: #81a1c1
+! bright blue
+*color12: #81a1c1
 ! magenta
-*color5: #85678F
-*color13: #B294BB
+*color5: #b48ead
+! bright magenta
+*color13: #b48ead
 ! cyan
-*color6: #5E8D87
-*color14: #8ABEB7
+*color6: #88c0d0
+! bright cyan
+*color14: #8fbcbb
 ! white
-*color7: #707880
-*color15: #C5C8C6
-
-! URXVT
-!----------------------------------------------------------------------
-! Colors
-! bold, italic, underline
-URxvt.colorBD: #B5BD68
-URxvt.colorIT: #B294BB
-URxvt.colorUL: #81A2BE
+*color7: #e5e9f0
+! bright white
+*color15: #eceff4
