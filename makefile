@@ -7,17 +7,17 @@ NIXNAME ?= system-aarch64
 # Static options
 
 MAKEFILE_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
-NIXOS_REBUILD_OPTS=NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 GIT_ASKPASS=${MAKEFILE_DIR}/git-askpass
+NIXOS_REBUILD_OPTS=NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1
 SSH_OPTS=-o PubkeyAuthentication=no -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
 BLOCK_DEVICE=nvme0n1
 
 # Rebuild from configuration, and switch to it.
 switch:
-	sudo ${NIXOS_REBUILD_OPTS} nixos-rebuild switch --flake ".?submodules=1#${NIXNAME}"
+	sudo -H ${NIXOS_REBUILD_OPTS} nixos-rebuild switch --flake ".?submodules=1#${NIXNAME}"
 
 # Test the configuration, but don't actually change anything.
 test:
-	sudo ${NIXOS_REBUILD_OPTS} nixos-rebuild test --flake ".?submodules=1#${NIXNAME}"
+	sudo -H ${NIXOS_REBUILD_OPTS} nixos-rebuild test --flake ".?submodules=1#${NIXNAME}"
 
 # Bootstrap a new VM. The VM should have NixOS ISO attached as the CD drive,
 # with a root password of "root" (after successful installation, root will be 
