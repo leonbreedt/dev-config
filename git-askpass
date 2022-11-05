@@ -1,0 +1,4 @@
+#!/bin/sh
+grep '@github.com$' $HOME/.git-credentials \
+  | sed -e 's|^https://||g' -e 's|@github.com||g' \
+  | awk -F: '{ printf("username=%s\n", $1); printf("password=%s\n", $2); }'

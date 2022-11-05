@@ -7,7 +7,7 @@ NIXNAME ?= system-aarch64
 # Static options
 
 MAKEFILE_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
-NIXOS_REBUILD_OPTS=NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1
+NIXOS_REBUILD_OPTS=NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 GIT_ASKPASS=${MAKEFILE_DIR}/git-askpass
 SSH_OPTS=-o PubkeyAuthentication=no -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
 BLOCK_DEVICE=nvme0n1
 
