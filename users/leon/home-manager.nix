@@ -49,7 +49,12 @@ let sources = import ../../nix/sources.nix; in {
   # services.picom.enable = true;
   services.polybar = {
     enable = true;
-    #extraConfig = builtins.readFile ./config/polybar;
+    extraConfig = builtins.readFile ./config/polybar;
+    script = ''
+      polybar desktop &
+      polybar status &
+      polybar title &
+    '';
   };
 
   programs.gpg.enable = true;

@@ -28,14 +28,9 @@ modules-left = bspwm
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[bar/primary-desktop]
+[bar/desktop]
 inherit = bar/desktop-base
-monitor = DP-4
-
-[bar/secondary-desktop]
-inherit = bar/desktop-base
-width = 9.75%
-monitor = DP-0
+monitor = Virtual-1
 
 [bar/status-base]
 width = 32%
@@ -62,13 +57,9 @@ modules-right = cpu-label cpu memory-label memory eth date
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[bar/primary-status]
+[bar/status]
 inherit = bar/status-base
-monitor = DP-4
-
-[bar/secondary-status]
-inherit = bar/status-base
-monitor = DP-0
+monitor = Virtual-1
 
 [bar/title-base]
 width = 18%
@@ -94,11 +85,7 @@ cursor-scroll = ns-resize
 
 [bar/primary-title]
 inherit = bar/title-base
-monitor = DP-4
-
-[bar/secondary-title]
-inherit = bar/title-base
-monitor = DP-0
+monitor = Virtual-1
 
 [module/active-title]
 type = internal/xwindow
