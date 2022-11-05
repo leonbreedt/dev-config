@@ -66,7 +66,7 @@ bootstrap/copy-secrets:
 		--exclude='environment' \
 		${HOME}/.ssh/ ${NIXUSER}@${NIXADDR}:~/.ssh
 	# Git credentials for root (so we can make switch)
-	scp ${SSH_OPTS} ${HOME}/.git-credentials root@${NIXADDR}:.git-credentials
+	scp ${SSH_OPTS} ${HOME}/.git-credentials ${MAKEFILE_DIR}/.gitconfig root@${NIXADDR}:
 
 # Run switch on newly booted system
 bootstrap/switch:
