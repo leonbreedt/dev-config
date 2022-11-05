@@ -57,6 +57,10 @@ let sources = import ../../nix/sources.nix; in {
     '';
   };
 
+  systemd.user.services.polybar = {
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
+
   programs.gpg.enable = true;
 
   programs.direnv = {
