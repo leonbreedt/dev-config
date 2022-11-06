@@ -148,9 +148,8 @@ let sources = import ../../nix/sources.nix; in {
   programs.fish = {
     enable = true;
     interactiveShellInit = lib.strings.concatStrings (lib.strings.intersperse "\n" [
-      "source ${sources.theme-bobthefish}/functions/fish_prompt.fish"
-      "source ${sources.theme-bobthefish}/functions/fish_right_prompt.fish"
-      "source ${sources.theme-bobthefish}/functions/fish_title.fish"
+      "source ${sources.theme-default}/functions/fish_prompt.fish"
+      "source ${sources.theme-default}/functions/fish_right_prompt.fish"
       (builtins.readFile ./config/config.fish)
       "set -g SHELL ${pkgs.fish}/bin/fish"
     ]);

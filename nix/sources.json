@@ -143,16 +143,16 @@
         "url": "https://github.com/buildpacks/pack/archive/2cf2c3442f574a2239ea3ee17aad7058fefe5410.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "theme-bobthefish": {
+    "theme-default": {
         "branch": "master",
-        "description": "A Powerline-style, Git-aware fish theme optimized for awesome.",
-        "homepage": "",
+        "description": null,
+        "homepage": null,
         "owner": "oh-my-fish",
-        "repo": "theme-bobthefish",
-        "rev": "1eaed8c39951029fa7839859abd5518977a80f83",
-        "sha256": "18c5bmg5in6shy57l6sqfshda2dp91r5kgzrysmm10kihqxw0562",
+        "repo": "theme-default",
+        "rev": "38a404d533f49c402f4a9212319ce70395d740d8",
+        "sha256": "0nckawgvqkhn08yrzzp0x32nsh2ksxskllmlnx33wkw1iqk62mhm",
         "type": "tarball",
-        "url": "https://github.com/oh-my-fish/theme-bobthefish/archive/1eaed8c39951029fa7839859abd5518977a80f83.tar.gz",
+        "url": "https://github.com/oh-my-fish/theme-default/archive/38a404d533f49c402f4a9212319ce70395d740d8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "tmux-dracula": {
