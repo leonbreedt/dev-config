@@ -7,7 +7,7 @@ super + shift + Return
 	kitty --working-directory "`xcwd`"
 
 # program launcher
-super + d
+super + @space
 	rofi -modi run,drun -show drun -columns 1 -width 24 -lines 8 -padding 45 -hide-scrollbar -show-icons -drun-icon-theme "Papirus"
 
 # bspwm hotkeys
