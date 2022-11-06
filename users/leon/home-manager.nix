@@ -179,7 +179,7 @@ let sources = import ../../nix/sources.nix; in {
     }) [
       "fish-fzf"
       "fish-foreign-env"
-      "theme-bobthefish"
+      "theme-default"
     ];
   };
 
