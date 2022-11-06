@@ -17,7 +17,7 @@ switch:
 
 # Test the configuration, but don't actually change anything.
 test:
-	sudo -H ${NIXOS_REBUILD_OPTS} nixos-rebuild test --flake ".?submodules=1#${NIXNAME}"
+	sudo -H ${NIXOS_REBUILD_OPTS} nixos-rebuild test --verbose --flake ".?submodules=1#${NIXNAME}"
 
 # Bootstrap a new VM. The VM should have NixOS ISO attached as the CD drive,
 # with a root password of "root" (after successful installation, root will be 

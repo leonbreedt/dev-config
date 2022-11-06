@@ -71,9 +71,12 @@
     };
 
     windowManager = {
-      bspwm.enable = true;
-      bspwm.configFile = "${config.users.users.leon.home}/.config/bspwm/bspwmrc";
-      bspwm.sxhkd.configFile = "${config.users.users.leon.home}/.config/bspwm/sxhkdrc";
+      bspwm = {
+        enable = true;
+        package = pkgs.bspwm-rounded;
+        configFile = "${config.users.users.leon.home}/.config/bspwm/bspwmrc";
+        sxhkd.configFile = "${config.users.users.leon.home}/.config/bspwm/sxhkdrc";
+      };
     };
   };
 
