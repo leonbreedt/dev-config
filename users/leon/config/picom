@@ -8,9 +8,9 @@ vsync = true;
 
 # Only apply rounded corners to Polybar, interferes with bspwm corner radius and highlight rendering.
 corner-radius = 10;
-#rounded-corners-exclude = [
-# "! class_g = 'Polybar' && ! class_g = 'Rofi'"
-#];
+rounded-corners-exclude = [
+ "! class_g = 'Polybar' && ! class_g = 'Rofi'"
+];
 
 shadow = true;
 shadow-radius = 20;
