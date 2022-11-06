@@ -3,20 +3,26 @@
 let sources = import ../../nix/sources.nix; in {
   xdg.enable = true;
 
-  home.packages = [
-    pkgs.bat
-    pkgs.exa
-    pkgs.du-dust
-    pkgs.fzf
-    pkgs.htop
-    pkgs.jq
-    pkgs.go
-    pkgs.gopls
-    pkgs.rustup
-    pkgs.tree
-    pkgs.watch
-    pkgs.ripgrep
-    pkgs.feh
+  home.packages = with pkgs; [
+    bat
+    du-dust
+    exa
+    fd
+    feh
+    fzf
+    go
+    gopls
+    htop
+    jq
+    neofetch
+    openjdk17
+    pwgen
+    ripgrep
+    rustup
+    tree
+    watch
+    wrk
+    xsv
   ];
 
   home.sessionVariables = {
