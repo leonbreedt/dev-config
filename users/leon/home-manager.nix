@@ -12,7 +12,6 @@ let sources = import ../../nix/sources.nix; in {
     pkgs.jq
     pkgs.go
     pkgs.gopls
-    pkgs.rofi
     pkgs.rustup
     pkgs.tree
     pkgs.watch
@@ -32,25 +31,86 @@ let sources = import ../../nix/sources.nix; in {
   home.file.".inputrc".source = ./config/inputrc;
   home.file.".git-credentials".source = ../../private/git-credentials;
 
-  xdg.configFile."rofi/config.rasi".text = builtins.readFile ./config/rofi;
-
-  xdg.configFile."bspwm/bspwmrc".text = builtins.readFile ./config/bspwmrc;
-  xdg.configFile."bspwm/bspwmrc".executable = true;
-  xdg.configFile."bspwm/sxhkdrc".text = builtins.readFile ./config/sxhkdrc;
-  xdg.configFile."bspwm/rules".text = builtins.readFile ./config/bspwm/rules;
-
-  xdg.configFile."picom/picom.conf".text = builtins.readFile ./config/picom;
-
   xdg.configFile."nvim/parser/proto.so".source = "${pkgs.tree-sitter-proto}/parser";
   xdg.configFile."nvim/queries/proto/folds.scm".source = "${sources.tree-sitter-proto}/queries/folds.scm";
   xdg.configFile."nvim/queries/proto/highlights.scm".source = "${sources.tree-sitter-proto}/queries/highlights.scm";
   xdg.configFile."nvim/queries/proto/textobjects.scm".source = ./config/textobjects.scm;
 
-  services.picom.enable = true;
+  services.picom = {
+    enable = true;
+    shadow = true;
+
+    # in home-manager 22.11, this moves to settings, see below
+    extraOptions = ''
+      shadow-radius = 20;
+      corner-radius = 10;
+      rounded-corners-exclude = [
+        "! class_g = 'Polybar' && ! class_g = 'Rofi'"
+      ];
+    '';
+
+    #settings = {
+    #  "shadow-radius" = 20;
+    #  "corner-radius" = 10;
+    #  "rounded-corners-exclude" = ["! class_g = 'Polybar' && ! class_g = 'Rofi'"];
+    #};
+  };
+
+  xsession.windowManager.bspwm = {
+    enable = true;
+    monitors = {
+      "Virtual-1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ];
+    };
+    alwaysResetDesktops = true;
+    settings = {
+      border_width = 4;
+      border_radius = 10;
+      focused_border_color = "#8fbcbb";
+      active_border_color = "#2e3440";
+      normal_border_color = "#2e3440";
+      top_padding = 60;
+      window_gap = 20;
+      borderless_monocle = true;
+      gapless_monocle = false;
+      split_ratio = 0.52;
+      focus_follows_pointer = true;
+    };
+  };
+
+  services.sxhkd = {
+    enable = true;
+    keybindings = {
+      "super + Return" = "kitty";
+      "super + @space" = "rofi";
+      "super + shift + q" = "bspc quit";
+      # focus node in direction
+      "super + {_,shift + }{Left,Down,Up,Right}" = "bspc node -{f,s} {west,south,north,east}";
+      # switch desktops
+      "super + 1" = "bspc desktop -f 1";
+      "super + 2" = "bspc desktop -f 2";
+      "super + 3" = "bspc desktop -f 3";
+      "super + 4" = "bspc desktop -f 4";
+      "super + 5" = "bspc desktop -f 5";
+      "super + 6" = "bspc desktop -f 6";
+      "super + 7" = "bspc desktop -f 7";
+      "super + 8" = "bspc desktop -f 8";
+      "super + 9" = "bspc desktop -f 9";
+      # move node to desktop
+      "super + shift + 1" = "bspc node -d 1";
+      "super + shift + 2" = "bspc node -d 2";
+      "super + shift + 3" = "bspc node -d 3";
+      "super + shift + 4" = "bspc node -d 4";
+      "super + shift + 5" = "bspc node -d 5";
+      "super + shift + 6" = "bspc node -d 6";
+      "super + shift + 7" = "bspc node -d 7";
+      "super + shift + 8" = "bspc node -d 8";
+      "super + shift + 9" = "bspc node -d 9";
+    };
+  };
 
   services.polybar = {
     enable = true;
-    extraConfig = builtins.readFile ./config/polybar;
+    config = ./config/polybar;
     script = ''
       polybar desktop &
       polybar status &
@@ -58,8 +118,12 @@ let sources = import ../../nix/sources.nix; in {
     '';
   };
 
-  systemd.user.services.polybar = {
-    Install.WantedBy = [ "graphical-session.target" ];
+  systemd.user.services.polybar.Install.WantedBy = [ "graphical-session.target" "tray.target" ];
+
+  programs.rofi = {
+    enable = true;
+    font = "IosevkaJB 12";
+    theme = "paper-float";
   };
 
   programs.gpg.enable = true;

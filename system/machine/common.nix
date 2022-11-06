@@ -65,18 +65,10 @@
       sessionCommands = ''
         ${pkgs.xorg.xset}/bin/xset r rate 200 40
         ${pkgs.xorg.xrandr}/bin/xrandr --output Virtual-1 --auto
-        ${pkgs.bspwm}/bin/bspc wm -r
-        source ${config.users.users.leon.home}/.config/bspwm/bspwmrc
       '';
     };
 
-    windowManager = {
-      bspwm = {
-        enable = true;
-        configFile = "${config.users.users.leon.home}/.config/bspwm/bspwmrc";
-        sxhkd.configFile = "${config.users.users.leon.home}/.config/bspwm/sxhkdrc";
-      };
-    };
+    windowManager.bspwm.enable = true;
   };
 
   # Do not allow users to be created on the system. Must be 
