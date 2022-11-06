@@ -32,6 +32,18 @@
       (final: prev: {
         # Go we always want the latest version
         go = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.go_1_19;
+
+        # Use rounded corners version of BSPWM
+        bspwm = prev.bspwm.overrideAttrs (old: {
+          pname = "bspwm";
+          version = "0.9.10";
+          src = prev.fetchFromGitHub {
+            owner = "phuhl";
+            repo = "bspwm-rounded";
+            rev = "a510c368595cd530713cc9d850842ba096051d12";
+            sha256 = "sha256-VyQoLiQ4yT43scFcCfBejr+SfGuJEZ6RI9Gf1kRGFV0=";
+          };
+        });
       })
     ];
   in {

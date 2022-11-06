@@ -17,6 +17,5 @@
 
   nixpkgs.overlays = [
     (import ./vim.nix)
-    (import ./bspwm.nix)
   ];
 }
