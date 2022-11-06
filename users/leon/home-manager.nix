@@ -148,6 +148,7 @@ let sources = import ../../nix/sources.nix; in {
   programs.fish = {
     enable = true;
     interactiveShellInit = lib.strings.concatStrings (lib.strings.intersperse "\n" [
+      "source ${sources.oh-my-fish}/lib/git/*.fish"
       "source ${sources.theme-default}/functions/fish_prompt.fish"
       "source ${sources.theme-default}/functions/fish_right_prompt.fish"
       (builtins.readFile ./config/config.fish)

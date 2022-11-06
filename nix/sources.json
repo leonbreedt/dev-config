@@ -131,6 +131,18 @@
         "url": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects/archive/7c80cf3c0f9f3af4dff717c3b0c090d117d37108.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "oh-my-fish": {
+        "branch": "master",
+        "description": "The Fish Shell Framework",
+        "homepage": "",
+        "owner": "oh-my-fish",
+        "repo": "oh-my-fish",
+        "rev": "55da5f7b6f6303186daf659ce7016438136fb5d8",
+        "sha256": "16lszvcc99i25swb6iaj050azj529ia3fscn46hzr75sfmmk93k2",
+        "type": "tarball",
+        "url": "https://github.com/oh-my-fish/oh-my-fish/archive/55da5f7b6f6303186daf659ce7016438136fb5d8.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "pack": {
         "branch": "v0.11.0",
         "description": "CLI for building apps using Cloud Native Buildpacks",
