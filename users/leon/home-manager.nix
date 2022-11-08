@@ -19,7 +19,6 @@ let sources = import ../../nix/sources.nix; in {
     oh-my-fish
     pwgen
     ripgrep
-    rustup
     tree
     watch
     wrk
