@@ -38,8 +38,6 @@ let sources = import ../../nix/sources.nix; in {
   home.file.".inputrc".source = ./config/inputrc;
   home.file.".git-credentials".source = ../../private/git-credentials;
 
-  xdg.configFile."omf/.keep".text = "";
-
   xdg.configFile."nvim/parser/proto.so".source = "${pkgs.tree-sitter-proto}/parser";
   xdg.configFile."nvim/queries/proto/folds.scm".source = "${sources.tree-sitter-proto}/queries/folds.scm";
   xdg.configFile."nvim/queries/proto/highlights.scm".source = "${sources.tree-sitter-proto}/queries/highlights.scm";
