@@ -16,6 +16,7 @@ let sources = import ../../nix/sources.nix; in {
     jq
     neofetch
     openjdk17
+    oh-my-fish
     pwgen
     ripgrep
     rustup
@@ -36,6 +37,8 @@ let sources = import ../../nix/sources.nix; in {
 
   home.file.".inputrc".source = ./config/inputrc;
   home.file.".git-credentials".source = ../../private/git-credentials;
+
+  xdg.configFile."omf/.keep".text = "";
 
   xdg.configFile."nvim/parser/proto.so".source = "${pkgs.tree-sitter-proto}/parser";
   xdg.configFile."nvim/queries/proto/folds.scm".source = "${sources.tree-sitter-proto}/queries/folds.scm";
@@ -147,22 +150,6 @@ let sources = import ../../nix/sources.nix; in {
 
   programs.fish = {
     enable = true;
-    interactiveShellInit = lib.strings.concatStrings (lib.strings.intersperse "\n" [
-      "source ${sources.oh-my-fish}/lib/git/git_ahead.fish"
-      "source ${sources.oh-my-fish}/lib/git/git_branch_name.fish"
-      "source ${sources.oh-my-fish}/lib/git/git_is_dirty.fish"
-      "source ${sources.oh-my-fish}/lib/git/git_is_repo.fish"
-      "source ${sources.oh-my-fish}/lib/git/git_is_staged.fish"
-      "source ${sources.oh-my-fish}/lib/git/git_is_stashed.fish"
-      "source ${sources.oh-my-fish}/lib/git/git_is_touched.fish"
-      "source ${sources.oh-my-fish}/lib/git/git_is_worktree.fish"
-      "source ${sources.oh-my-fish}/lib/git/git_untracked.fish"
-      "source ${sources.theme-default}/functions/fish_prompt.fish"
-      "source ${sources.theme-default}/functions/fish_right_prompt.fish"
-      (builtins.readFile ./config/config.fish)
-      "set -g SHELL ${pkgs.fish}/bin/fish"
-    ]);
-
     shellAliases = {
       ga = "git add";
       gc = "git commit";
@@ -174,21 +161,21 @@ let sources = import ../../nix/sources.nix; in {
       gp = "git push";
       gs = "git status";
       gt = "git tag";
-
       vi = "nvim";
       vim = "nvim";
-
       pbcopy = "xclip";
       pbpaste = "xclip -o";
     };
-
-    plugins = map (n: {
-      name = n;
-      src  = sources.${n};
-    }) [
-      "fish-fzf"
-      "fish-foreign-env"
-      "theme-default"
+    plugins = [
+      {
+        name = "theme-bobthefish";
+        src = pkgs.fetchFromGitHub {
+          owner = "oh-my-fish";
+          repo = "theme-bobthefish";
+          rev = "2dcfcab653ae69ae95ab57217fe64c97ae05d8de";
+          sha256 = "sha256-jBbm0wTNZ7jSoGFxRkTz96QHpc5ViAw9RGsRBkCQEIU=";
+        };
+      }
     ];
   };
 
