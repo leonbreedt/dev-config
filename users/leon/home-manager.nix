@@ -1,30 +1,9 @@
 { config, lib, pkgs, ... }:
 
-let sources = import ../../nix/sources.nix; in {
+{
   xdg.enable = true;
 
-  home.packages = with pkgs; [
-    bat
-    du-dust
-    exa
-    fd
-    feh
-    fzf
-    go
-    gopls
-    htop
-    jq
-    neofetch
-    openjdk17
-    oh-my-fish
-    pwgen
-    ripgrep
-    tree
-    watch
-    wrk
-    xsv
-  ];
-
+  # global environment
   home.sessionVariables = {
     LANG = "en_US.UTF-8";
     LC_CTYPE = "en_US.UTF-8";
@@ -34,34 +13,32 @@ let sources = import ../../nix/sources.nix; in {
     MANPAGER = "bat -p";
   };
 
+  # user-specific packages.
+  # programming environments are done per-project with direnv.
+  home.packages = with pkgs; [
+    bat
+    du-dust
+    exa
+    fd
+    feh
+    fzf
+    htop
+    jq
+    neofetch
+    oh-my-fish
+    pwgen
+    ripgrep
+    tree
+    watch
+    wrk
+    xsv
+  ];
+
+  # managed config files
   home.file.".inputrc".source = ./config/inputrc;
   home.file.".git-credentials".source = ../../private/git-credentials;
 
-  xdg.configFile."nvim/parser/proto.so".source = "${pkgs.tree-sitter-proto}/parser";
-  xdg.configFile."nvim/queries/proto/folds.scm".source = "${sources.tree-sitter-proto}/queries/folds.scm";
-  xdg.configFile."nvim/queries/proto/highlights.scm".source = "${sources.tree-sitter-proto}/queries/highlights.scm";
-  xdg.configFile."nvim/queries/proto/textobjects.scm".source = ./config/textobjects.scm;
-
-  services.picom = {
-    enable = true;
-    shadow = true;
-
-    # in home-manager 22.11, this moves to settings, see below
-    extraOptions = ''
-      shadow-radius = 20;
-      corner-radius = 10;
-      rounded-corners-exclude = [
-        "! class_g = 'Polybar' && ! class_g = 'Rofi'"
-      ];
-    '';
-
-    #settings = {
-    #  "shadow-radius" = 20;
-    #  "corner-radius" = 10;
-    #  "rounded-corners-exclude" = ["! class_g = 'Polybar' && ! class_g = 'Rofi'"];
-    #};
-  };
-
+  # window manager
   xsession.windowManager.bspwm = {
     enable = true;
     monitors = {
@@ -83,6 +60,7 @@ let sources = import ../../nix/sources.nix; in {
     };
   };
 
+  # keyboard shortcuts
   services.sxhkd = {
     enable = true;
     keybindings = {
@@ -114,6 +92,28 @@ let sources = import ../../nix/sources.nix; in {
     };
   };
 
+  # compositor
+  services.picom = {
+    enable = true;
+    shadow = true;
+
+    # in home-manager 22.11, this moves to settings, see below
+    extraOptions = ''
+      shadow-radius = 20;
+      corner-radius = 10;
+      rounded-corners-exclude = [
+        "! class_g = 'Polybar' && ! class_g = 'Rofi'"
+      ];
+    '';
+
+    #settings = {
+    #  "shadow-radius" = 20;
+    #  "corner-radius" = 10;
+    #  "rounded-corners-exclude" = ["! class_g = 'Polybar' && ! class_g = 'Rofi'"];
+    #};
+  };
+
+  # utility toolbars
   services.polybar = {
     enable = true;
     config = ./config/polybar;
@@ -123,28 +123,33 @@ let sources = import ../../nix/sources.nix; in {
       polybar title &
     '';
   };
-
   systemd.user.services.polybar.Install.WantedBy = [ "graphical-session.target" "tray.target" ];
 
+  # global X11 configuration
+  xresources.extraConfig = builtins.readFile ./config/Xresources;
+
+  # make cursor not tiny on HiDPI screens
+  home.pointerCursor = {
+    name = "Vanilla-DMZ";
+    package = pkgs.vanilla-dmz;
+    size = 128;
+    x11.enable = true;
+  };
+
+  # program launcher
   programs.rofi = {
     enable = true;
     font = "IosevkaJB 12";
     theme = "paper-float";
   };
 
-  programs.gpg.enable = true;
-
+  # per-project environment manager
   programs.direnv = {
     enable = true;
-    config = {
-      whitelist = {
-        prefix= [
-        ];
-        exact = ["$HOME/.envrc"];
-      };
-    };
   };
 
+
+  # shell
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -175,7 +180,12 @@ let sources = import ../../nix/sources.nix; in {
       }
     ];
   };
+  programs.kitty = {
+    enable = true;
+    extraConfig = builtins.readFile ./config/kitty;
+  };
 
+  # git
   programs.git = {
     enable = true;
     userName = "Leon Breedt";
@@ -208,50 +218,16 @@ let sources = import ../../nix/sources.nix; in {
     };
   };
 
-  programs.go = {
-    enable = true;
-    goPath = "$HOME/.go";
-    goPrivate = [ "github.com/leonbreedt" ];
-  };
-
-  programs.kitty = {
-    enable = true;
-    extraConfig = builtins.readFile ./config/kitty;
-  };
-
+  # editor
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
-
     plugins = with pkgs; [
-      customVim.vim-cue
-      customVim.vim-fish
-      customVim.vim-fugitive
-      customVim.vim-pgsql
-      customVim.vim-tla
-      customVim.pigeon
-      customVim.AfterColors
-
-      customVim.vim-nord
-      customVim.nvim-lspconfig
-      customVim.nvim-treesitter
-      customVim.nvim-treesitter-playground
-      customVim.nvim-treesitter-textobjects
-
-      vimPlugins.ctrlp
-      vimPlugins.vim-airline
-      vimPlugins.vim-airline-themes
-      vimPlugins.vim-eunuch
-      vimPlugins.vim-gitgutter
-
-      vimPlugins.vim-markdown
-      vimPlugins.vim-nix
-      vimPlugins.typescript-vim
     ];
-
-    extraConfig = (import ./vim-config.nix) { inherit sources; };
   };
 
+  # gnupg
+  programs.gpg.enable = true;
   services.gpg-agent = {
     enable = true;
     pinentryFlavor = "tty";
@@ -259,16 +235,6 @@ let sources = import ../../nix/sources.nix; in {
     # cache the keys forever so we don't get asked for a password
     defaultCacheTtl = 31536000;
     maxCacheTtl = 31536000;
-  };
-
-  xresources.extraConfig = builtins.readFile ./config/Xresources;
-
-  # make cursor not tiny on HiDPI screens
-  home.pointerCursor = {
-    name = "Vanilla-DMZ";
-    package = pkgs.vanilla-dmz;
-    size = 128;
-    x11.enable = true;
   };
 }
 
