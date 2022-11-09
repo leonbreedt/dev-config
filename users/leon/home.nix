@@ -148,7 +148,6 @@
     enable = true;
   };
 
-
   # shell
   programs.fish = {
     enable = true;
@@ -163,8 +162,6 @@
       gp = "git push";
       gs = "git status";
       gt = "git tag";
-      vi = "nvim";
-      vim = "nvim";
       pbcopy = "xclip";
       pbpaste = "xclip -o";
     };
@@ -221,8 +218,45 @@
   # editor
   programs.neovim = {
     enable = true;
+    viAlias = true;
+    vimAlias = true;
     package = pkgs.neovim-nightly;
     plugins = with pkgs; [
+      # theme + powerline
+      localVimPlugins.catppuccin-nvim
+      vimPlugins.lightline-vim
+
+      # LSP
+      vimPlugins.nvim-lspconfig
+
+      # completion
+      vimPlugins.cmp-nvim-lsp
+      vimPlugins.cmp-buffer
+      vimPlugins.cmp-path
+      vimPlugins.cmp-cmdline
+      vimPlugins.nvim-cmp
+      vimPlugins.cmp-vsnip
+      vimPlugins.vim-vsnip
+
+      # popups
+      vimPlugins.popfix
+      localVimPlugins.popui-nvim
+
+      # tree sitter
+      (vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
+        tree-sitter-c
+        tree-sitter-cpp
+        tree-sitter-go
+        tree-sitter-nix
+        tree-sitter-rust
+      ]))
+    ];
+    extraConfig = builtins.readFile ./config/nvim;
+
+    # Language servers
+    extraPackages = with pkgs; [
+      rust-analyzer
+      gopls
     ];
   };
 
@@ -237,4 +271,3 @@
     maxCacheTtl = 31536000;
   };
 }
-
