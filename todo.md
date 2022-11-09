@@ -1,2 +1,1 @@
 - remove hacked config when nixpkgs/nixos goes to 22.11
-- update VIM config to old setup
