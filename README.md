@@ -12,6 +12,10 @@ For some demos and the thinking behind it, watch the
 [Dev Tool Time with Mitchell Hashimoto](https://www.youtube.com/watch?v=LA8KF9Fs2sk)
 podcast episode.
 
+## What it looks like
+
+![Screenshot](https://raw.githubusercontent.com/leonbreedt/dev-config/main/screenshot.png)
+
 ## Using
 
 ### Pre-requisites
