@@ -229,6 +229,10 @@
       # LSP
       vimPlugins.nvim-lspconfig
 
+      # Languages
+      vimPlugins.rust-vim
+      vimPlugins.vim-nix
+
       # completion
       vimPlugins.cmp-nvim-lsp
       vimPlugins.cmp-buffer
