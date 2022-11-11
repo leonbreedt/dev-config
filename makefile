@@ -2,7 +2,7 @@
 
 NIXUSER ?= leon
 NIXADDR ?= 192.168.36.128
-NIXNAME ?= system-aarch64
+NIXNAME ?= vm-aarch64
 
 # Static options
 

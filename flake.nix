@@ -47,7 +47,7 @@
       })
     ];
   in {
-    nixosConfigurations.system-aarch64 = buildSystem "system-aarch64" {
+    nixosConfigurations.vm-aarch64 = buildSystem "vm-aarch64" {
       inherit nixpkgs home-manager;
       system = "aarch64-linux";
       user = "leon";

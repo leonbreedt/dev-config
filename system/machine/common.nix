@@ -60,12 +60,6 @@
       defaultSession = "none+bspwm";
       lightdm.enable = true;
 
-      # AARCH64: For now, on Apple Silicon, we must manually set the
-      # display resolution. This is a known issue with VMware Fusion.
-      sessionCommands = ''
-        ${pkgs.xorg.xset}/bin/xset r rate 200 40
-        ${pkgs.xorg.xrandr}/bin/xrandr --output Virtual-1 --auto
-      '';
     };
 
     windowManager.bspwm.enable = true;
@@ -87,7 +81,7 @@
   };
 
   # System packages
-    environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     gnumake
     killall
     xclip
@@ -98,7 +92,7 @@
     (writeShellScriptBin "xrandr-auto" ''
       xrandr --output Virtual-1 --auto
     '')
-  ] ++ lib.optionals (currentSystemName == "system-aarch64") [
+  ] ++ lib.optionals (currentSystemName == "vm-aarch64") [
     # This is needed for the vmware user tools clipboard to work.
     # You can test if you don't need this by deleting this and seeing
     # if the clipboard sill works.
