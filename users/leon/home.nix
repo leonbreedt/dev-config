@@ -29,6 +29,7 @@
     oh-my-fish
     pwgen
     ripgrep
+    scrot
     tree
     watch
     wrk
