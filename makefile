@@ -28,6 +28,8 @@ gc:
 	sudo nix-env -p /nix/var/nix/profiles/system --delete-generations old
 	sudo nix-collect-garbage -d
 	sudo nix-env -p /nix/var/nix/profiles/system --list-generations
+	# Remove old boot-loader entries
+	sudo bash -c "cd /boot/loader/entries; ls | head -n -1 | xargs rm"
 
 # Bootstrap a new VM. The VM should have NixOS ISO attached as the CD drive,
 # with a root password of "root" (after successful installation, root will be 
