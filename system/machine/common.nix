@@ -1,9 +1,6 @@
-{ config, pkgs, lib, currentSystem, currentSystemName, ... }:
+{ config, pkgs, lib, currentSystemName, ... }:
 
 {
-  # Be careful updating this.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   nix = {
     # use unstable Nix so we can access flakes
     package = pkgs.nixUnstable;
@@ -86,13 +83,13 @@
     killall
     xclip
     file
-
+  ] ++ lib.optionals (currentSystemName == "vm-aarch64") [
     # For hypervisors that support auto-resizing, this script forces it.
     # I've noticed not everyone listens to the udev events so this is a hack.
     (writeShellScriptBin "xrandr-auto" ''
       xrandr --output Virtual-1 --auto
     '')
-  ] ++ lib.optionals (currentSystemName == "vm-aarch64") [
+
     # This is needed for the vmware user tools clipboard to work.
     # You can test if you don't need this by deleting this and seeing
     # if the clipboard sill works.

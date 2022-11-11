@@ -30,7 +30,7 @@ cursor-scroll = ns-resize
 
 [bar/desktop]
 inherit = bar/desktop-base
-monitor = Virtual-1
+monitor = ${xrdb:monitor1}
 
 [bar/status-base]
 width = 32%
@@ -59,7 +59,7 @@ cursor-scroll = ns-resize
 
 [bar/status]
 inherit = bar/status-base
-monitor = Virtual-1
+monitor = ${xrdb:monitor1}
 
 [bar/title-base]
 width = 18%
@@ -85,7 +85,7 @@ cursor-scroll = ns-resize
 
 [bar/title]
 inherit = bar/title-base
-monitor = Virtual-1
+monitor = ${xrdb:monitor1}
 
 [module/active-title]
 type = internal/xwindow

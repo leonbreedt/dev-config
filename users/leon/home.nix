@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, currentSystemName, ... }:
 
 {
   xdg.enable = true;
@@ -11,6 +11,7 @@
     EDITOR = "nvim";
     PAGER = "bat -p";
     MANPAGER = "bat -p";
+    NIXNAME = currentSystemName;
   };
 
   # user-specific packages.
@@ -126,7 +127,13 @@
   systemd.user.services.polybar.Install.WantedBy = [ "graphical-session.target" "tray.target" ];
 
   # global X11 configuration
-  xresources.extraConfig = builtins.readFile ./config/Xresources;
+  xresources.extraConfig = ''
+    ${builtins.readFile ./config/Xresources}
+
+    ! monitor names used in configuration
+    *monitor1: ${if currentSystemName == "hw-x64" then "DP-4" else "Virtual-1"}
+    *monitor2: ${if currentSystemName == "hw-x64" then "DP-0" else ""}
+  '';
 
   # make cursor not tiny on HiDPI screens
   home.pointerCursor = {

@@ -11,22 +11,26 @@ nixpkgs.lib.nixosSystem rec {
     # the overlays are available globally.
     { nixpkgs.overlays = overlays; }
 
-    machine/${name}.nix
-    ../users/${user}/default.nix
+   machine/${name}.nix
+   ../users/${user}/default.nix
 
-    home-manager.nixosModules.home-manager {
+   # We expose some extra arguments so that our modules can parameterize
+   # better based on these values.
+   {
+     config._module.args = {
+       currentSystemName = name;
+       currentSystem = system;
+     };
+   }
+
+   home-manager.nixosModules.home-manager {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users.${user} = import ../users/${user}/home.nix;
-    }
-
-    # We expose some extra arguments so that our modules can parameterize
-    # better based on these values.
-    {
-      config._module.args = {
+      home-manager.extraSpecialArgs = {
         currentSystemName = name;
         currentSystem = system;
       };
-    }
+      home-manager.users.${user} = import ../users/${user}/home.nix;
+   }
   ];
 }

@@ -2,7 +2,11 @@
 
 NIXUSER ?= leon
 NIXADDR ?= 192.168.36.128
-NIXNAME ?= vm-aarch64
+ifeq ($(shell uname -m),x86_64)
+  NIXNAME ?= hw-x64
+else
+	NIXNAME ?= vm-aarch64
+endif
 NIXBLOCKDEV ?= nvme0n1
 
 # Static options
