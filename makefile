@@ -3,13 +3,13 @@
 NIXUSER ?= leon
 NIXADDR ?= 192.168.36.128
 NIXNAME ?= vm-aarch64
+NIXBLOCKDEV ?= nvme0n1
 
 # Static options
 
 MAKEFILE_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 NIXOS_REBUILD_OPTS=NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 USER=root
 SSH_OPTS=-o PubkeyAuthentication=no -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
-BLOCK_DEVICE=nvme0n1
 
 # Rebuild from configuration, and switch to it.
 switch:
@@ -48,7 +48,7 @@ bootstrap/copy-config:
 bootstrap/install:
 	ssh ${SSH_OPTS} ${NIXUSER}@${NIXADDR} "\
 		sudo nix-shell \
-			--argstr blockDevice ${BLOCK_DEVICE} \
+			--argstr blockDevice ${NIXBLOCKDEV} \
 			--argstr systemName ${NIXNAME} \
 			/nix-config/install \
 	"
