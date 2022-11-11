@@ -23,6 +23,12 @@ switch:
 test:
 	sudo -H ${NIXOS_REBUILD_OPTS} nixos-rebuild test --verbose --flake ".?submodules=1#${NIXNAME}"
 
+# Garbage collect, and remove old generations
+gc:
+	sudo nix-env -p /nix/var/nix/profiles/system --delete-generations old
+	sudo nix-collect-garbage -d
+	sudo nix-env -p /nix/var/nix/profiles/system --list-generations
+
 # Bootstrap a new VM. The VM should have NixOS ISO attached as the CD drive,
 # with a root password of "root" (after successful installation, root will be 
 # locked). After this target is complete, NixOS will be installed but user
