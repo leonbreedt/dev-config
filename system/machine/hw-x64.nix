@@ -26,5 +26,11 @@
   # Interface name on Ryzen desktop
   networking.interfaces.enp7s0.useDHCP = true;
 
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.enable = true;
+
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
