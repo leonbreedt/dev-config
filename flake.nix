@@ -74,5 +74,11 @@
         };
       })];
     };
+
+    nixosConfigurations.hw-x64 = buildSystem "hw-x64" {
+      inherit nixpkgs home-manager overlays;
+      system = "x86_64-linux";
+      user = "leon";
+    };
   };
 }
