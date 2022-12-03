@@ -40,6 +40,7 @@
   # managed config files
   home.file.".inputrc".source = ./config/inputrc;
   home.file.".git-credentials".source = ../../private/git-credentials;
+  home.file.".wallpaper".source = ./wallpapers/denali.jpg;
 
   # window manager
   xsession.windowManager.bspwm = {
