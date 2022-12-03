@@ -54,7 +54,7 @@
   # This works through our custom module imported above
   virtualisation.vmware.guest.enable = true;
 
-  services.xserver.sessionCommands = ''
+  services.xserver.displayManager.sessionCommands = ''
     ${pkgs.xorg.xrandr}/bin/xrandr --output Virtual-1 --auto
   '';
 }
