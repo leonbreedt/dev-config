@@ -13,6 +13,7 @@
     PAGER = "bat -p";
     MANPAGER = "bat -p";
     NIXNAME = currentSystemName;
+    FLEETBACKEND_JDK = "${pkgs.jdk}";
   };
 
   # user-specific packages.
@@ -26,6 +27,8 @@
     fzf
     htop
     jq
+    # Install globally for Fleet Backend
+    jdk
     neofetch
     oh-my-fish
     pwgen
