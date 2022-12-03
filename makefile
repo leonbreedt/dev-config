@@ -3,7 +3,7 @@
 NIXUSER ?= leon
 NIXADDR ?= 192.168.36.128
 ifeq ($(shell uname -m),x86_64)
-  NIXNAME ?= hw-x64
+	NIXNAME ?= hw-x64
 else
 	NIXNAME ?= vm-aarch64
 endif

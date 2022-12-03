@@ -21,8 +21,9 @@ podcast episode.
 ### Pre-requisites
 
 - Apple Silicon Mac (M1 or newer)
-- VMWare Fusion Public Tech Preview (22H2 or later)
-- Blank ARM64 VM created with following settings
+- VMWare Fusion (22H2 or later)
+- Blank *Other 64-bit Arm* custom virtual machine created with following
+  custom settings:
   - *Sharing*, *Enable Shared Folders* **on**
   - *Processors & Memory*
     - At least 4 cores
@@ -36,8 +37,10 @@ podcast episode.
       - NVMe is **required**, scripts assume block device is `nvme0n1`
     - At least **256GB** in size
   - *CD/DVD*
-    - Latest **22.05** ISO image attached, later versions have 
+    - Latest **22.11** ISO image attached, other versions have 
       not been tested and may not work.
+  - *Shared Folder*
+    - Add a shared folder (any name)
 - Boot up the VM, change the root password to `root`:
   ```shell
   sudo su
