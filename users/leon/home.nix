@@ -63,6 +63,9 @@
       split_ratio = 0.52;
       focus_follows_pointer = true;
     };
+    extraConfig = ''
+      feh --bg-scale ~/.wallpaper
+    '';
   };
 
   # keyboard shortcuts
@@ -102,20 +105,11 @@
     enable = true;
     shadow = true;
 
-    # in home-manager 22.11, this moves to settings, see below
-    extraOptions = ''
-      shadow-radius = 20;
-      corner-radius = 10;
-      rounded-corners-exclude = [
-        "! class_g = 'Polybar' && ! class_g = 'Rofi'"
-      ];
-    '';
-
-    #settings = {
-    #  "shadow-radius" = 20;
-    #  "corner-radius" = 10;
-    #  "rounded-corners-exclude" = ["! class_g = 'Polybar' && ! class_g = 'Rofi'"];
-    #};
+    settings = {
+      "shadow-radius" = 20;
+      "corner-radius" = 10;
+      "rounded-corners-exclude" = ["! class_g = 'Polybar' && ! class_g = 'Rofi'"];
+    };
   };
 
   # utility toolbars
