@@ -54,10 +54,7 @@
   # This works through our custom module imported above
   virtualisation.vmware.guest.enable = true;
 
-  # AARCH64: For now, on Apple Silicon, we must manually set the
-  # display resolution. This is a known issue with VMware Fusion.
   services.xserver.sessionCommands = ''
-    ${pkgs.xorg.xset}/bin/xset r rate 200 40
     ${pkgs.xorg.xrandr}/bin/xrandr --output Virtual-1 --auto
   '';
 }
