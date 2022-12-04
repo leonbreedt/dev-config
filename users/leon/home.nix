@@ -240,7 +240,7 @@
           white = "0xdcdfe4";
         };
         bright = {
-          black = "0x5d67aa";
+          black = "0xa9aaab";
           red = "0xe06c75";
           green = "0xe5c07b";
           yellow = "0xebcb8b";
