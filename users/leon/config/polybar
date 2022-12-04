@@ -33,7 +33,7 @@ inherit = bar/desktop-base
 monitor = ${xrdb:monitor1}
 
 [bar/status-base]
-width = 32%
+width = 38%
 height = 50
 fixed-center = true
 override-redirect = true
