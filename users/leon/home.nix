@@ -192,7 +192,65 @@
   };
   programs.alacritty = {
     enable = true;
-    extraConfig = builtins.readFile ./config/alacritty;
+    settings = {
+      env.TERM = "xterm-256color";
+      window = {
+        padding = {
+          x = 4;
+          y = 4;
+        };
+        decorations = "none";
+      };
+      font = {
+        normal = {
+          family = "IosevkaJB";
+          style = "Semibold";
+        };
+        italic = {
+          family = "IosevkaJB";
+          style = "Semibold Italic";
+        };
+        bold = {
+          family = "IosevkaJB";
+          style = "Bold";
+        };
+        bold_italic = {
+          family = "IosevkaJB";
+          style = "Bold Italic";
+        };
+        size = 11;
+      };
+      cursor = {
+        style = "Beam";
+        unfocused_hollow = true;
+      };
+      colors = {
+        primary = {
+          background = "0x282c34";
+          foreground = "0xdcdfe4";
+        };
+        normal = {
+          black = "0x000000";
+          red = "0xe06c75";
+          green = "0xe5c07b";
+          yellow = "0xebcb8b";
+          blue = "0x61afef";
+          magenta = "0xc678dd";
+          cyan = "0x56b6c2";
+          white = "0xdcdfe4";
+        };
+        bright = {
+          black = "0x5d67aa";
+          red = "0xe06c75";
+          green = "0xe5c07b";
+          yellow = "0xebcb8b";
+          blue = "0x61afef";
+          magenta = "0xc678dd";
+          cyan = "0x56b6c2";
+          white = "0xdcdfe4";
+        };
+      };
+    };
   };
 
   # git
