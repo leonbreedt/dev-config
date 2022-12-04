@@ -76,8 +76,8 @@
   services.sxhkd = {
     enable = true;
     keybindings = {
-      "super + Return" = "kitty";
-      "super + @space" = "rofi";
+      "super + Return" = "alacritty";
+      "super + @space" = "rofi -show run";
       "super + shift + q" = "bspc quit";
       # focus node in direction
       "super + {_,shift + }{Left,Down,Up,Right}" = "bspc node -{f,s} {west,south,north,east}";
@@ -189,6 +189,10 @@
   programs.kitty = {
     enable = true;
     extraConfig = builtins.readFile ./config/kitty;
+  };
+  programs.alacritty = {
+    enable = true;
+    extraConfig = builtins.readFile ./config/alacritty;
   };
 
   # git
