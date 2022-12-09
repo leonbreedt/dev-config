@@ -203,22 +203,22 @@
       };
       font = {
         normal = {
-          family = "Fixed";
-          style = "Regular";
+          family = "IosevkaJB";
+          style = "Semibold";
         };
         italic = {
-          family = "Fixed";
-          style = "Oblique";
+          family = "IosevkaJB";
+          style = "Semibold Italic";
         };
         bold = {
-          family = "Fixed";
+          family = "IosevkaJB";
           style = "Bold";
         };
         bold_italic = {
-          family = "Fixed";
-          style = "Oblique";
+          family = "IosevkaJB";
+          style = "Bold Italic";
         };
-        size = 16;
+        size = 11;
       };
       cursor = {
         style = "Beam";
