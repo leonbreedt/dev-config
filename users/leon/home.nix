@@ -218,7 +218,7 @@
           family = "Fixed";
           style = "Oblique";
         };
-        size = 11;
+        size = 16;
       };
       cursor = {
         style = "Beam";
