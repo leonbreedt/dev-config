@@ -27,7 +27,6 @@
     fzf
     htop
     jq
-    # Install globally for Fleet Backend
     jdk
     neofetch
     oh-my-fish
@@ -38,6 +37,7 @@
     watch
     wrk
     xsv
+    ucs-fonts
   ];
 
   # managed config files
