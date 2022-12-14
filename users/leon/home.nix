@@ -14,6 +14,7 @@
     MANPAGER = "bat -p";
     NIXNAME = currentSystemName;
     FLEETBACKEND_JDK = "${pkgs.jdk}";
+    ZLIB_PATH = "${pkgs.zlib}";
   };
 
   # user-specific packages.
