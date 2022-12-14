@@ -27,7 +27,11 @@
     fzf
     htop
     jq
+
+    # needed by Fleet
     jdk
+    zlib
+
     neofetch
     oh-my-fish
     pwgen
